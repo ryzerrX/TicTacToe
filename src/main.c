@@ -16,12 +16,26 @@
 
 #include <stdio.h>
 #include "board.h"
+#include "decideplayer.h"
 
-
-
-int main (int argc, char* argv[])
+void main()
 {
-
-    return 0;
+    board game_board;
+    int gamerunning = 1 , stepcounter = 0 , current_player;
+    while (gamerunning)
+    {
+        current_player = decideplayer(stepcounter);
+        inputposition(&game_board , current_player);
+        displayboard(game_board);
+        gamerunning=checkboard(game_board);
+        stepcounter++;
+        if (stepcounter == 9 && gamerunning)
+        {
+            printf("Its a Tie");
+            gamerunning=0;
+        }
+        
+    }
 }
+
 
