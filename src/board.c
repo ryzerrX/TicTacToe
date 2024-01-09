@@ -83,13 +83,22 @@ void inputposition(board *game_board , int current_player)
     }
 }
 
-int checkboard(board game_board)
-{
-    for (int i = 0; i < 3; i++)
+int checkboard(int gameboard[3][3]) 
+{   
+    int i=0,j=0,val;
+    bool match = true;
+    for (i = 0; i < 3; i++)
     {
-        if (game_board.grid[i][0] == game_board.grid[i][1] && game_board.grid[i][0] == game_board.grid[i][2])
+        for (j = 0; j < 3; j++)
         {
-            switch (game_board.grid[i][0])
+           if(gameboard[i][j] != gameboard[i][j+1])
+           {
+                break;
+           }
+        }
+        if (j == 2)
+        {
+            switch (gameboard[i][j])
             {
             case 1:
                 printf("X wins\n");
@@ -103,11 +112,18 @@ int checkboard(board game_board)
             }
         }
     }
-    for (int j = 0; j < 3; j++)
+    for (j = 0; j < 3; j++)
     {
-        if (game_board.grid[0][j] == game_board.grid[1][j] && game_board.grid[0][j] == game_board.grid[2][j])
+        for (i = 0; i < 3; i++)
         {
-            switch (game_board.grid[0][j])
+           if(gameboard[i][j] != gameboard[i+1][j])
+           {
+                break;
+           }
+        }
+        if (i == 2)
+        {
+            switch (gameboard[i][j])
             {
             case 1:
                 printf("X wins\n");
@@ -121,10 +137,22 @@ int checkboard(board game_board)
             }
         }
     }
-    if (game_board.grid[0][0] == game_board.grid[1][1] && game_board.grid[0][0] == game_board.grid[2][2] || game_board.grid[0][2] == game_board.grid[1][1] && game_board.grid[0][2] == game_board.grid[2][0])
+    val = gameboard[i][j];
+    while(i < 3 && match)
     {
-       switch (game_board.grid[1][1])
+        
+        if (gameboard[i][j] != val)
         {
+            match = false;
+        }
+        i++;
+        j++;
+        
+    }
+    if (gameboard[i][j] == val)
+        {
+            switch (gameboard[i][j])
+            {
             case 1:
                 printf("X wins\n");
                 return 0;
@@ -134,7 +162,8 @@ int checkboard(board game_board)
                 return 0;
             default:
                 break;
+            }
         }
-    }
+    
     return 1;
 }
