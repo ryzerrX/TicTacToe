@@ -21,7 +21,8 @@
 void main()
 {
     board game_board;
-    int gamerunning = 1 , stepcounter = 0 , current_player;
+    int gamerunning = 1 , current_player;
+    stepcounter = 0;
     while (gamerunning)
     {
         current_player = decideplayer(stepcounter);

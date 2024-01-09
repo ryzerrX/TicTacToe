@@ -1,9 +1,8 @@
 #include <stdio.h>
-#include "decideplayer.h"
 
-int decideplayer(int stepcounter)
+int decideplayer(int step)
 {
-    if (stepcounter % 2 == 0)
+    if (step % 2 == 0)
     {
         return 1;
     }
