@@ -15,28 +15,25 @@
 
 
 #include <stdio.h>
-#include "board.h"
-#include "decideplayer.h"
+#include "game.h"
+
 
 void main()
 {
-    board game_board;
-    int gamerunning = 1 , current_player;
-    stepcounter = 0;
-    while (gamerunning)
+    int size,streak;
+    printf("Welcome to my TicTacToe Game\n");
+    printf("Enter board size\n");
+    scanf("%d",&size);
+    printf("Enter board streak\n");
+    scanf("%d",&streak);
+
+    if (size<streak)
     {
-        current_player = decideplayer(stepcounter);
-        inputposition(&game_board , current_player);
-        displayboard(game_board);
-        gamerunning=checkboard(game_board);
-        stepcounter++;
-        if (stepcounter == 9 && gamerunning)
-        {
-            printf("Its a Tie");
-            gamerunning=0;
-        }
-        
+        printf("Streak should be less than or equal to size of board. Therefore setting streak = %d\n",size);
     }
+    Game *game;
+    game=init_game(size,streak);
+    run_game(game);
 }
 
 
